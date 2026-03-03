@@ -1,0 +1,27 @@
+h1 {
+  text-align: center;
+  border: 10px solid;
+  padding: 30px;
+  color: green;
+}
+
+h2 {
+  color: green;
+  border-left: 2px solid lightgreen;
+  border-bottom: 2px solid lightgreen;
+  width: fit-content;
+  padding: 5px 10px;
+}
+
+span {
+  color: red;
+  font-weight: bold;
+}
+
+.body__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;border: 3px solid gray;
+}
+
