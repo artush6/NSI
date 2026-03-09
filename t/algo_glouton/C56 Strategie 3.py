@@ -4,7 +4,7 @@ def valeur_masse(dico):
     Sortie: float : le rapport valeur/masse
     Exemple : valeur_masse({'nom': 'D', 'valeur': 750, 'masse': 25}) renvoie 30.0
     """
-    pass
+    return dico['valeur'] / dico['masse']
 
 
 def tri_valeur_masse(liste_objets):
@@ -18,11 +18,12 @@ def tri_valeur_masse(liste_objets):
     >>> objets
     [{'nom': 'C', 'valeur': 350, 'masse': 9}, {'nom': 'A', 'valeur': 500, 'masse': 15}, {'nom': 'D', 'valeur': 750, 'masse': 25}, {'nom': 'B', 'valeur': 400, 'masse': 24}]
     """
-    pass
+    return liste_objets.sort(key=valeur_masse, reverse=True)
 
 
-##----- programme principal -----##
+## ----- programme principal -----##
 
-objets = [{'nom' : 'A', 'valeur' : 500, 'masse' : 15}, {'nom' : 'B', 'valeur' : 400, 'masse' : 24}, {'nom' : 'C', 'valeur' : 350, 'masse' : 9}, {'nom' : 'D', 'valeur' : 750, 'masse' : 25}]
+objets = [{'nom': 'A', 'valeur': 500, 'masse': 15}, {'nom': 'B', 'valeur': 400, 'masse': 24}, {
+    'nom': 'C', 'valeur': 350, 'masse': 9}, {'nom': 'D', 'valeur': 750, 'masse': 25}]
 tri_valeur_masse(objets)
 print(objets)

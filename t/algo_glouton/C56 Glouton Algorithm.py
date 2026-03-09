@@ -1,20 +1,26 @@
 def valeur(dico):
     return dico['valeur']
 
+
 def tri_valeur(liste_objets):
-    liste_objets.sort(key=valeur, reverse = True)
+    liste_objets.sort(key=valeur, reverse=True)
+
 
 def masse(dico):
     return dico['masse']
 
+
 def tri_masse(liste_objets):
     liste_objets.sort(key=masse, reverse=True)
+
 
 def valeur_masse(dico):
     return dico['valeur']/dico['masse']
 
+
 def tri_valeur_masse(liste_objets):
-    liste_objets.sort(key = valeur_masse, reverse = True)
+    liste_objets.sort(key=valeur_masse, reverse=True)
+
 
 def camion_glouton(liste_objets, charge_utile, tri):
     """
@@ -37,11 +43,16 @@ def camion_glouton(liste_objets, charge_utile, tri):
     objets_charges = []
 
     # Chargement
-    pass
+    for objet in liste_objets:
+        if masse_chargee + objet['masse'] <= charge_utile:
+            objets_charges.append(objet)
+            masse_chargee += objet['masse']
+
+    return objets_charges
 
 
-##----- programme principal -----##
-
-objets = [{'nom' : 'A', 'valeur' : 500, 'masse' : 15}, {'nom' : 'B', 'valeur' : 400, 'masse' : 24}, {'nom' : 'C', 'valeur' : 350, 'masse' : 9}, {'nom' : 'D', 'valeur' : 750, 'masse' : 25}]
+    ## ----- programme principal -----##
+objets = [{'nom': 'A', 'valeur': 500, 'masse': 15}, {'nom': 'B', 'valeur': 400, 'masse': 24}, {
+    'nom': 'C', 'valeur': 350, 'masse': 9}, {'nom': 'D', 'valeur': 750, 'masse': 25}]
 
 print(camion_glouton(objets, 40, tri_masse))

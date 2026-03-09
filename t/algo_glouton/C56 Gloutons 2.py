@@ -4,7 +4,7 @@ def masse(dico):
     Sortie: integer : la masse
     Exemple :  masse({'nom': 'D', 'valeur': 750, 'masse': 25}) renvoie 25
     """
-    pass
+    return dico["masse"]
 
 
 def tri_masse(liste_objets):
@@ -18,11 +18,12 @@ def tri_masse(liste_objets):
     >>> objets
     [{'nom': 'D', 'valeur': 750, 'masse': 25}, {'nom': 'B', 'valeur': 400, 'masse': 24}, {'nom': 'A', 'valeur': 500, 'masse': 15}, {'nom': 'C', 'valeur': 350, 'masse': 9}]
     """
-    pass
+    return liste_objets.sort(key=masse, reverse=True)
 
 
-##----- programme principal -----##
+## ----- programme principal -----##
 
-objets = [{'nom' : 'A', 'valeur' : 500, 'masse' : 15}, {'nom' : 'B', 'valeur' : 400, 'masse' : 24}, {'nom' : 'C', 'valeur' : 350, 'masse' : 9}, {'nom' : 'D', 'valeur' : 750, 'masse' : 25}]
+objets = [{'nom': 'A', 'valeur': 500, 'masse': 15}, {'nom': 'B', 'valeur': 400, 'masse': 24}, {
+    'nom': 'C', 'valeur': 350, 'masse': 9}, {'nom': 'D', 'valeur': 750, 'masse': 25}]
 tri_masse(objets)
 print(objets)
