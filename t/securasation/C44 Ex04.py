@@ -57,16 +57,16 @@ e = 23
 message = 'RSA'
 
 # à décocher à la question 2 pour tester la fonction rsa.
-"""x = rsa(message,e,n)
-print(x)"""
+x = rsa(message, e, n)
+print(x)
 
 # à décocher à la question 3 pour tester la fonction cle_privee.
-"""d = cle_privee(e,f)
-print(d)"""
+d = cle_privee(e, f)
+print(d)
 
 # à décocher à la question 4 pour tester la fonction dechiffrement.
-"""nb=dechiffrement(x, d, n)
-print(nb)"""
+nb = dechiffrement(x, d, n)
+print(nb)
 
 # à décocher à la question 5 pour tester la fonction dechiff_final.
-"""print(dechiff_final(nb))"""
+print(dechiff_final(nb))
