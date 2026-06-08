@@ -16,24 +16,22 @@ class Boutique_smoothie:
 
     ##### QUESTION 1 #####
     def smoothie_possible(self, nom_smoothie):
-        for fruit in self.liste_fruits_disponibles:
-            if fruit not in self.db_smoothies[nom_smoothie]:
+        """Retourne True si le smoothie peut être préparé avec les fruits disponibles, False sinon."""
+        for fruit in self.db_smoothies[nom_smoothie]:
+            if fruit not in self.liste_fruits_disponibles: 
                 return False
-            else:
-                return True
-            
-
+        
+        return True
+        
     ##### QUESTION 2 #####
     def liste_smoothies_possibles(self):
+        """Retourne la liste des smoothies pouvant être préparés avec les fruits disponibles."""
         lst = []
-
         for smoothie in self.db_smoothies:
             if self.smoothie_possible(smoothie):
                 lst.append(smoothie)
-
+        
         return lst
-                    
-            
 
     def score_proximité(self, nom1, nom2):
         """Retourne le nombre de fruits communs entre deux smoothies."""
@@ -47,16 +45,20 @@ class Boutique_smoothie:
 
     # Question 4
     def plus_proche_possible(self, nom_smoothie_ref):
-        """Retourne le nom du smoothie le plus proche de nom_smoothie_ref en termes de fruits communs parmi les smoothies possibles.
+        """Retourne le nom du smoothie possible le plus proche de nom_smoothie_ref
+        en termes de fruits communs parmi les smoothies possibles.
         En cas d'égalité, retourne le premier trouvé.
         """
         max_communs = 0
         smoothie_proche = None
+
         for nom_smoothie in self.db_smoothies:
-            nb_communs = self.score_proximité(nom_smoothie_ref, nom_smoothie)
-            if nb_communs > max_communs:
-                max_communs = nb_communs
-                smoothie_proche = nom_smoothie
+            if self.smoothie_possible(nom_smoothie):
+                nb_communs = self.score_proximité(nom_smoothie_ref, nom_smoothie)
+                if nb_communs > max_communs:
+                    max_communs = nb_communs
+                    smoothie_proche = nom_smoothie
+
         return smoothie_proche
 
     def affichage_possibles(self):
@@ -76,6 +78,13 @@ class Boutique_smoothie:
                         f"Pour le smoothie {smoothie}, aucun smoothie proche disponible.")
 
 # ========= Fonctions de test ==================
+
+b = Boutique_smoothie(["Mangue", "Fraise", "Ananas", "Banane", "Citron", "Kiwi", "Pomme verte"])
+print(b.affichage_possibles())
+print(b.smoothie_possible("Soleil couchant"))
+print(b.liste_smoothies_possibles())
+
+
 
 
 def test_smoothie_possible():
@@ -103,11 +112,9 @@ def test_liste_smoothies_possibles():
 def test_score_proximité():
     # À compléter
     boutique = Boutique_smoothie(
-    ["Mangue", "Ananas", "Banane", "Fraise", "Citron", "Kiwi", "Pomme verte"])
-    
-    score = boutique.score_proximité()
-    
-    assert 
+        ["Mangue", "Ananas", "Banane", "Fraise", "Citron"])
+    assert boutique.score_proximité("Rouge", "Rouge kiwi") == 2
+    assert boutique.score_proximité("Tropical", "Tropical citron") == 2
 
 
 def test_plus_proche_possible():
@@ -120,11 +127,15 @@ def test_plus_proche_possible():
     assert smoothie_proche2 == None
 
 
-b = Boutique_smoothie(["Mangue", "Pamplemousse", "Ananas", "Banane"])
-print(b.liste_smoothies_possibles())
-
 # ======== Lancement des tests ========
 
-
+test_smoothie_possible()
+test_liste_smoothies_possibles()
+test_score_proximité()
+#test_plus_proche_possible()
 
 # Question 5
+
+
+
+
