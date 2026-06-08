@@ -16,13 +16,24 @@ class Boutique_smoothie:
 
     ##### QUESTION 1 #####
     def smoothie_possible(self, nom_smoothie):
-        """Retourne True si le smoothie peut être préparé avec les fruits disponibles, False sinon."""
-        pass  # à remplacer par le code la méthode
+        for fruit in self.liste_fruits_disponibles:
+            if fruit not in self.db_smoothies[nom_smoothie]:
+                return False
+            else:
+                return True
+            
 
     ##### QUESTION 2 #####
     def liste_smoothies_possibles(self):
-        """Retourne la liste des smoothies pouvant être préparés avec les fruits disponibles."""
-        pass  # à remplacer par le code la méthode
+        lst = []
+
+        for smoothie in self.db_smoothies:
+            if self.smoothie_possible(smoothie):
+                lst.append(smoothie)
+
+        return lst
+                    
+            
 
     def score_proximité(self, nom1, nom2):
         """Retourne le nombre de fruits communs entre deux smoothies."""
@@ -91,7 +102,12 @@ def test_liste_smoothies_possibles():
 
 def test_score_proximité():
     # À compléter
-    pass
+    boutique = Boutique_smoothie(
+    ["Mangue", "Ananas", "Banane", "Fraise", "Citron", "Kiwi", "Pomme verte"])
+    
+    score = boutique.score_proximité()
+    
+    assert 
 
 
 def test_plus_proche_possible():
@@ -104,10 +120,11 @@ def test_plus_proche_possible():
     assert smoothie_proche2 == None
 
 
+b = Boutique_smoothie(["Mangue", "Pamplemousse", "Ananas", "Banane"])
+print(b.liste_smoothies_possibles())
+
 # ======== Lancement des tests ========
 
-test_smoothie_possible()
-test_liste_smoothies_possibles()
-test_plus_proche_possible()
+
 
 # Question 5

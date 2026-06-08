@@ -32,16 +32,42 @@ def algoNaif(texte,motif):
         return "le motif a été trouvé en position(s) : " + str(occurence)
     return "le motif est absent du texte"
 
+def preTraitement(motif):
+    m = len(motif)
+    D = [0] * m
+    d = 0
+    
+    for j in range(1, m):
+        while d > 0 and motif[j] != motif[d]:
+            d = D[d - 1]
+        if motif[j] == motif[d]:
+            d = d + 1
+        D[j] = d
 
-def preTraitement(motif) :
-    """ Renvoie un tableau qui contient, pour chaque caractère du motif repéré par son indice, la position à partir de laquelle reprendre la recherche en cas de non-correspondance  """
-    pass
+    return D
 
 @timer
-def rechercheMP(texte,motif):
-    """ Algorithme de Morris Pratt"""
-    pass
+def rechercheMP(texte, motif):
+    D = preTraitement(motif)
+    i = 0
+    j = 0
+    n = len(texte)
+    m = len(motif)
 
+    while i < n:
+        if texte[i] == motif[j]:
+            i += 1
+            j += 1
+        else:
+            if j > 0:
+                j = D[j - 1]
+            else:
+                i += 1
+
+        if j == m:
+            return i - m
+
+    return -1
 
 
 def ouvrirFichierTxt(nomFichier): # ouverture d'un fichier txt
